@@ -1,24 +1,11 @@
-const express = require('express')
+const express = require('express');
+const app = express();
 
-const app = express()
+const { config } = require('./config');
+const moviesApi = require('./routes/movies');
 
-const {config}=require('./config')
+moviesApi(app);
 
-app.get('/',(req,res)=>{
-  res.send("Hello World")
-})
-
-const vale = {
-  name:'Valentina',
-  age: 20
-}
-
-app.get('/json',(req,res)=>{
-  res.json(vale)
-})
-
-console.log(config)
-
-app.listen(config.port,()=>{
-  console.log(`Listening http://localhost:${config.port}`)
-})
+app.listen(config.port, () => {
+  console.log(`Listening http://localhost:${config.port}`);
+});
